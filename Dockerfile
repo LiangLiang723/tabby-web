@@ -70,4 +70,4 @@ COPY --from=build-backend /venv /venv
 
 COPY backend/start.sh backend/manage.sh /
 RUN chmod +x /start.sh /manage.sh
-CMD ["/start.sh"]
+CMD ["/bin/sh", "-c", "[ -d /app-dist/1.0.189-nightly.2 ] || ./manage.sh add_version 1.0.189-nightly.2; ./start.sh"]
