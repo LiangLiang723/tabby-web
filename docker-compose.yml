@@ -2,7 +2,6 @@ services:
     tabby:
         build: .
         restart: always
-        command: /bin/sh -c "[ -d /app-dist/1.0.189-nightly.2 ] || ./manage.sh add_version 1.0.189-nightly.2; ./start.sh"
         volumes:
         - ./app-dist:/app-dist
         - ./data:/data
