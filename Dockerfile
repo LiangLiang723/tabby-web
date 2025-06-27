@@ -29,7 +29,7 @@ WORKDIR /app
 
 # Rust (for python-cryptography)
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
-ENV PATH /root/.cargo/bin:$PATH
+ENV PATH="/root/.cargo/bin:$PATH"
 
 RUN pip install -U setuptools cryptography==37.0.4 poetry==1.1.7
 COPY backend/pyproject.toml backend/poetry.lock ./
@@ -50,9 +50,9 @@ RUN APP_DIST_STORAGE=file:///app-dist /venv/*/bin/python ./manage.py add_version
 
 FROM python:3.7-alpine AS backend
 
-ENV APP_DIST_STORAGE file:///app-dist
-ENV DOCKERIZE_VERSION v0.6.1
-ENV DOCKERIZE_ARCH amd64
+ENV APP_DIST_STORAGE="file:///app-dist"
+ENV DOCKERIZE_VERSION="v0.6.1"
+ENV DOCKERIZE_ARCH="amd64"
 ARG TARGETPLATFORM
 RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; \
     then export DOCKERIZE_ARCH=armhf; \
